@@ -4,7 +4,8 @@ app = Flask(__name__)
 
 PRODUCTS = [
     { 'id': 1, 'name': 'Skello' },
-    { 'id': 2, 'name': 'Socialive.tv' }
+    { 'id': 2, 'name': 'Socialive.tv' },
+    { 'id': 3, 'name': 'another.org'}
 ]
 
 @app.route('/')
