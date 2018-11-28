@@ -13,11 +13,11 @@ PRODUCTS = [
 def hello():
     return "Hello World!!!!"
 
-@app.route('/api/v1/products')
+@app.route('/api/v1/products', methods = ['GET'])
 def products():
     return jsonify(PRODUCTS)
 
-@app.route('/api/v1/products/<int:id>')
+@app.route('/api/v1/products/<int:id>', methods = ['GET','POST','DELETE','PATCH'])
 def product(id):
     if request.method == 'GET':
         for elem in PRODUCTS:
@@ -26,7 +26,11 @@ def product(id):
         content = {f'id {id}': 'unknown'}
         return Response(content, status=404, mimetype='application/json')
     elif request.method == 'DELETE':
-        pass
+        for elem in PRODUCTS:
+            if elem['id'] == id:
+                return Response('', status=204, mimetype='application/json')
+        content = {'unknown': 'unknown'}
+        return Response(content, status=404, mimetype='application/json')
     elif request.method == 'PATCH':
         pass
     elif request.method == 'POST':
