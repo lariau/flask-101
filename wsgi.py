@@ -23,7 +23,7 @@ def product(id):
         for elem in PRODUCTS:
             if elem['id'] == id:
                 return jsonify(elem)
-        content = {'id': 'unknown'}
+        content = {f'id {id}': 'unknown'}
         return Response(content, status=404, mimetype='application/json')
     elif request.method == 'DELETE':
         pass
