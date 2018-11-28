@@ -12,3 +12,14 @@ class TestViews(TestCase):
         products = response.json
         self.assertIsInstance(products, list)
         self.assertGreater(len(products), 2) # 2 is not a mistake here.
+
+    def test_product_exists(self):
+        response = self.client.get("/api/v1/products/1")
+        product = response.json
+        self.assertIsInstance(product, dict)
+        self.assertEqual(product['name'],'Skello')
+
+    def test_product_doesnt_exist(self):
+        response = self.client.get("/api/v1/products/5")
+        error = response.status_code
+        self.assertEqual(error,404)
