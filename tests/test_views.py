@@ -18,6 +18,7 @@ class TestViews(TestCase):
         product = response.json
         self.assertIsInstance(product, dict)
         self.assertEqual(product['name'],'Skello')
+        self.assertEqual(response.status_code,200)
 
     def test_product_doesnt_exist(self):
         response = self.client.get("/api/v1/products/5")
